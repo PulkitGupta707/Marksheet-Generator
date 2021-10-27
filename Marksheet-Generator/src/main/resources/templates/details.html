@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Document</title>
+  </head>
+  <body> 
+   <p th:text="${student}"/> 
+   <table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Roll Number</th>
+				<th>Physics</th>
+				<th>Chemistry</th>
+				<th>Mathematics</th>
+				<th>Java</th>
+				
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td th:text="${student.firstName}" />
+				<td th:text="${student.lastName}" />	
+				<td th:text="${student.rollnumber}" />	
+				<td th:text="${student.Physics}" />
+				<td th:text="${student.Chemistry}" />	
+				<td th:text="${student.Maths}" />	
+				<td th:text="${student.Java}" />	
+						
+				
+			</tr>
+		</tbody>		
+	</table>
+	<a th:href="@{/student/details/{x}/export/pdf(x=${student.rollnumber})}">Export to PDF</a>
+	<br>
+	<a th:href="@{/student/details/{x}/export/excel(x=${student.rollnumber})}">Export to Excel</a>
+	
+  </body>
+</html>
