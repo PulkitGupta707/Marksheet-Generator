@@ -12,7 +12,7 @@ public class ExcelService {
 	@Autowired
 	private MarksheetService marksheetService;
 
-  public ByteArrayInputStream load(int rollnumber) {
+	public ByteArrayInputStream load(int rollnumber) {
 	  Student student = marksheetService.getdetails(rollnumber);
 
     ByteArrayInputStream in = ExcelHelper.exportToExcel(student);

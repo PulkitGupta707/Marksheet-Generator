@@ -36,6 +36,11 @@
 			</tr>
 		</tbody>		
 	</table>
+	<br><br>
+	<div>
+	<p> Result: <span th:text="((${student.Physics} >=33) and (${student.Chemistry} >=33) and (${student.Maths} >=33) and (${student.Java} >=33) )? 'Passed' : 'Failed'"></span>
+	</div>
+	
 	<a th:href="@{/student/details/{x}/export/pdf(x=${student.rollnumber})}">Export to PDF</a>
 	<br>
 	<a th:href="@{/student/details/{x}/export/excel(x=${student.rollnumber})}">Export to Excel</a>

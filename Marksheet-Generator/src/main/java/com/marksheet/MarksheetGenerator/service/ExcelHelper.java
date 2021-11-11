@@ -20,7 +20,8 @@ public class ExcelHelper {
   public static ByteArrayInputStream exportToExcel(Student student) {
 
     try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
-      Sheet sheet = workbook.createSheet(SHEET);
+    	SHEET = student.getFirstName() +" " +student.getLastName()+SHEET;
+       Sheet sheet = workbook.createSheet(SHEET);
 
       // Header
       Row headerRow = sheet.createRow(0);

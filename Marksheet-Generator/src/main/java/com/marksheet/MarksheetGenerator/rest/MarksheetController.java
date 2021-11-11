@@ -43,8 +43,8 @@ public class MarksheetController {
 			 return "details";
 	}
 	
-	@GetMapping("/details/{r}/export/pdf")
-	 public void exportToPDF(@PathVariable int r, HttpServletResponse response) throws DocumentException, IOException {
+	@GetMapping("/details/{rollnumber}/export/pdf")
+	 public void exportToPDF(@PathVariable int rollnumber, HttpServletResponse response) throws DocumentException, IOException {
 	
         response.setContentType("application/pdf");
         Date date = new Date();
@@ -56,15 +56,15 @@ public class MarksheetController {
         String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
                     
-        Student student = marksheetService.getdetails(r);
+        Student student = marksheetService.getdetails(rollnumber);
          
         UserPDFExporter exporter = new UserPDFExporter(student);
         exporter.export(response);
          
     }
 	
-	 @Autowired
-	  ExcelService fileService;
+	@Autowired
+	ExcelService fileService;
 	@GetMapping("/details/{rollnumber}/export/excel")
 	 public ResponseEntity<Resource> getFile(@PathVariable int rollnumber) {
 		
@@ -73,7 +73,7 @@ public class MarksheetController {
 	     DateFormat dateFormatter = new SimpleDateFormat(strDateFormat);
 	     String currentDateTime = dateFormatter.format(date);
 	     String filename = currentDateTime+".xlsx";
-	    InputStreamResource file = new InputStreamResource(fileService.load(rollnumber));
+	     InputStreamResource file = new InputStreamResource(fileService.load(rollnumber));
 
 	    return ResponseEntity.ok()
 	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
